@@ -39,7 +39,7 @@
   <util:properties id="mailProperties">
     <prop key="mail.smtp.from">${mail.sender.from}</prop>
     <prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
-    <prop key="mail.smtp.ssl.enable">${mail.smtp.ssl.enable}</prop>
+    <prop key="mail.smtp.ssl.enable">false</prop>
     <prop key="mail.transport.protocol">${mail.sender.protocol}</prop>
   </util:properties>
 

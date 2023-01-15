@@ -1,0 +1,17 @@
+.product-basic-information .ui-group {
+  width: 94% !important;
+}
+.product-basic-information .form-cell .dropdown-selection {
+  width: 89% !important;
+}
+.product-basic-information .black-cell {
+  height: 54px;
+}
+.product-basic-information .form-block {
+  min-height: 490px;
+  border-right: 1px solid #d9d9d9;
+}
+#productForm .form-field textarea {
+  width: 87%;
+  height: 90px;
+}

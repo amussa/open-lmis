@@ -1,0 +1,78 @@
+.rapid-test-form {
+  display: block;
+  width: 1250px;
+  margin: 0 auto;
+}
+.rapid-test-form .black-width {
+  width: 20px;
+  max-width: 20px;
+}
+.rapid-test-form table {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.rapid-test-form table tr {
+  height: 30px;
+  text-align: center;
+}
+.rapid-test-form table td {
+  border: 1px solid black;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.rapid-test-form table .width-700 {
+  width: 700px !important;
+}
+.rapid-test-form table .height-50 {
+  height: 50px !important;
+}
+.rapid-test-form table .height-30 {
+  height: 30px !important;
+}
+.rapid-test-form table .height-20 {
+  height: 20px !important;
+}
+.rapid-test-form table .black-tr {
+  height: 10px;
+}
+.rapid-test-form table .text__left {
+  text-align: left !important;
+}
+.rapid-test-form table .font-bold {
+  font-weight: bold;
+}
+.rapid-test-form table .table--title {
+  height: 40px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #AFAFAF;
+}
+.rapid-test-form table .table--subtitle-light-gray {
+  font-weight: bold;
+  height: 35px;
+  background-color: #E2E2E2;
+}
+.rapid-test-form table .table--subtitle-middle-gray {
+  font-weight: bold;
+  height: 35px;
+  background-color: #AFAFAF;
+}
+.rapid-test-form table .table--subtitle-dark-gray {
+  font-weight: bold;
+  height: 35px;
+  background-color: #858585;
+}
+.rapid-test-form .report--title {
+  text-align: center;
+  line-height: 1.2;
+}
+.rapid-test-form .report--title-font {
+  font-weight: bold;
+  font-size: 24px;
+}
+.rapid-test-form .report--subtitle {
+  font-size: 18px;
+}
+.rapid-test-form .report--footer-section {
+  padding-left: 20px;
+}
