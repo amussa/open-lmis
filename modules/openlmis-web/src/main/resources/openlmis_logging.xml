@@ -11,13 +11,25 @@
 
 
 <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
-<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+<log4j:configuration xmlns:log4j="http://jakPrearta.apache.org/log4j/">
   <appender name="logFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
     <!-- <param name="File" value="${logHome}/openlmis-web.log"/> -->
     <param name="File" value="/tmp/openlmis-web.log"/>
     <param name="MaxFileSize" value="1MB"/>
     <param name="MaxBackupIndex" value="5"/>
     <param name="Append" value="true"/>
+    <param name="Encoding" value="UTF-8"/>
+    <layout class="org.apache.log4j.EnhancedPatternLayout">
+      <param name="ConversionPattern" value="%d{ISO8601} [%-5p][%-16.16t][%40.40c] - %m%n"/>
+    </layout>
+  </appender>
+
+  <appender name="integrationFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+    <param name="File" value="/tmp/openlmis-ftp.log"/>
+    <param name="MaxFileSize" value="1MB"/>
+    <param name="MaxBackupIndex" value="5"/>
+    <param name="Append" value="true"/>
+    <param name="Threshold" value="INFO"/>
     <param name="Encoding" value="UTF-8"/>
     <layout class="org.apache.log4j.EnhancedPatternLayout">
       <param name="ConversionPattern" value="%d{ISO8601} [%-5p][%-16.16t][%40.40c] - %m%n"/>
@@ -73,9 +85,9 @@
     <appender-ref ref="syncActivityLogFileAppender"/>
   </logger>
 
-  <logger name="org.springframework.integration">
+  <logger name="org.springframework.integration"  additivity="false" >
     <level value="INFO"/>
-    <appender-ref ref="logFileAppender"/>
+    <appender-ref ref="integrationFileAppender"/>
   </logger>
 
   <logger name="org.springframework">

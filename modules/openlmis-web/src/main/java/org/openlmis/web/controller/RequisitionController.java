@@ -15,7 +15,6 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Predicate;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.openlmis.core.domain.Facility;
 import org.openlmis.core.domain.ProcessingPeriod;
 import org.openlmis.core.domain.Program;
@@ -40,7 +39,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -120,7 +118,7 @@ public class RequisitionController extends BaseController {
     try {
       Rnr initiatedRnr = requisitionService
           .initiate(new Facility(facilityId), new Program(programId), loggedInUserId(request),
-              emergency, null, null);
+              emergency, null, null, null);
       ResponseEntity<OpenLmisResponse> response = response(RNR, initiatedRnr);
       response.getBody().addData(NUMBER_OF_MONTHS, requisitionService.findM(initiatedRnr.getPeriod()));
       return response;

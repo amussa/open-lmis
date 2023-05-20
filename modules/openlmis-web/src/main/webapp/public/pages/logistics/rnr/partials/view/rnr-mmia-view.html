@@ -1,11 +1,41 @@
 <div class="mmia-form">
-    <table class="border-all-bold head-section" cellpadding="0" cellspacing="0">
+    <table class="border-all-bold head-section" cellpadding="0" cellspacing="0" style="border-color: #FFFFFF">
         <tr>
-            <td rowspan="3" class="background-black banner-text">
-                <div class="width-28 banner-text">
-                    <div class="text-nowrap">CMAM - Modelo 01</div>
-                </div>
+            <th colspan="5" style="padding: 35px; border: 0px">
+                <span class="view-table-logo"></span>
+                <p>Ministério da Saúde</p>
+                <p>Departamento de Meios Auxiliares de Diagnóstico</p>
+                <p>Repartição Central de Laboratórios Clinicos</p>
+                <p>Relatório de Consumo para Reagentes e Consumíveis</p>
+            </th>
+        </tr>
+        <tr>
+            <td class="border-bottom">
+                <p><span openlmis-message="view.rnr.healthFacility"></span>: {{rnr.facility.name}}</p>
             </td>
+            <td class="border-none"></td>
+            <td class="border-bottom">
+                <p><span openlmis-message="view.rnr.district"></span>: {{rnr.facility.geographicZone.name}}</p>
+            </td>
+            <td class="border-none"></td>
+            <td class="border-bottom">
+                <p><span openlmis-message="view.rnr.province"></span>: {{rnr.facility.geographicZone.parent.name}}</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="border-bottom">
+                <p><span openlmis-message="view.rnr.mmia.month"></span>: {{month}}</p>
+            </td>
+            <td class="border-none"></td>
+            <td class="border-none"></td>
+            <td class="border-none"></td>
+            <td class="border-bottom">
+                <p><span openlmis-message="view.rnr.mmia.year"></span>: {{year}}</p>
+            </td>
+        </tr>
+
+        <!--
+        <tr>
             <td class=" col-1">
                 <span style="float: left" class="view-table-logo"></span>
 
@@ -25,7 +55,6 @@
                 <span> : </span> {{month}}
             </td>
         </tr>
-
         <tr>
             <td colspan="3">
                 <span openlmis-message="view.rnr.healthFacility"></span>
@@ -37,20 +66,21 @@
                 <span>: {{year}}</span>
             </td>
         </tr>
-
         <tr class="">
             <td colspan="2"><span openlmis-message="view.rnr.district"></span>: {{rnr.facility.geographicZone.name}}</td>
             <td><span openlmis-message="view.rnr.province"></span>:{{rnr.facility.geographicZone.parent.name}}</td>
         </tr>
+        -->
+
     </table>
-    <div class="separate"></div>
-    <table class="second-section">
+
+    <table class="second-section" style="width: 100%; margin-top: 20px;">
         <thead>
         <tr>
             <th class="banner-text"></th>
             <th class="border-bottom-bold" openlmis-message="view.rnr.fnm"></th>
             <th class="col-4" openlmis-message="view.rnr.mmia.medicine"></th>
-            <th openlmis-message="view.rnr.mmia.issuedUnit"></th>
+<!--            <th openlmis-message="view.rnr.mmia.issuedUnit"></th>-->
             <th openlmis-message="view.rnr.mmia.initialAmount"></th>
             <th openlmis-message="view.rnr.mmia.entries"></th>
             <th openlmis-message="view.rnr.mmia.issues"></th>
@@ -65,7 +95,7 @@
             <td ng-if="rnr.reportType === 'old'" style="border: none" class="{{params[item.categoryName]['barcode']}}">{{item.productCode===undefined? '': '*'+item.productCode+'*'}}</td>
             <td ng-if="rnr.reportType === 'new'" class="{{params[item.categoryName]['barcode']}}">{{item.productCode===undefined? '': '*'+item.productCode+'*'}}</td>
             <td class="{{params[item.categoryName]['productPrimaryName']}}">{{item.productPrimaryName}}</td>
-            <td>{{item.productStrength}}</td>
+<!--            <td>{{item.productStrength}}</td>-->
             <td>{{item.beginningBalance}}</td>
             <td>{{item.quantityReceived}}</td>
             <td>{{item.quantityDispensed}}</td>
@@ -76,9 +106,25 @@
 
         </tbody>
     </table>
-    <div class="separate"></div>
+
     <div class="page-break"></div>
     <div class="middle-section">
+        <!--
+        <table style="width: 100%;">
+            <thead>
+            <tr>
+                <th ng-repeat="header in lmisEquipmentHeaders">{{ header }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in lmisEquipmentRows">
+                <td ng-repeat="column in row">{{ column }}</td>
+            </tr>
+            </tbody>
+        </table>
+        -->
+
+        <!--
         <table class="regime-form">
             <col width="3"><col width="10"><col width="500"><col width="10"><col width="10">
             <thead>
@@ -150,7 +196,10 @@
                 </tr>
                 </tbody>
         </table>
-        <div class="patient-section">
+        -->
+
+        <!--
+        <div class="patient-section" ng-hide="true">
 
             <table ng-if="rnr.reportType === 'new'" ng-repeat="type in patientsCategory" class="patient-form">
                 <thead>
@@ -260,38 +309,102 @@
                 </div>
             </div>
         </div>
+        -->
     </div>
 
-    <div class="bottom-section">
+    <div class="middle-section">
+        <table style="width: 100%;">
+            <thead>
+                <tr>
+                    <th class="equipments-cell-1" style="border: none;"></th>
+                    <th colspan="3" ng-repeat="e in lmisEquipments">{{e.total}}</th>
+                </tr>
+                <tr>
+                    <th class="equipments-cell-1" style="border: none;"></th>
+                    <th colspan="3" ng-repeat="e in lmisSeries">Nr. de série: {{e.total}}</th>
+                </tr>
+                <tr>
+                    <th class="equipments-cell-1" style="border: none;"></th>
+                    <th style="font-size: 12px;" ng-repeat="trial in lmisTrials track by $index">{{trial}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="equipments-cell-1">Nº de pacientes testados</td>
+                    <th ng-repeat="p in lmisPatients track by $index" >{{ p.total }}</th>
+                </tr>
+                <tr>
+                    <td class="equipments-cell-1">Nº de testes realizados pelo equipamento</td>
+                    <th ng-repeat="p in lmisTests track by $index">{{ p.total }}</th>
+                </tr>
+            <tr>
+                <td class="equipments-cell-1">Nº de dias em que o equipamento funcionou</td>
+                <th colspan="3" ng-repeat="e in lmisDaysEquipmentWorked">{{e.total}}</th>
+            </tr>
+            <tr>
+                <td class="equipments-cell-1">Nº de dias em que o equipamento esteve avariado</td>
+                <th colspan="3" ng-repeat="e in lmisDaysEquipmentBroked">{{e.total}}</th>
+            </tr>
+            <tr>
+                <td class="equipments-cell-1">Data da última manutenção preventiva</td>
+                <th colspan="3" ng-repeat="e in lmisLastMaintenance">{{e.total}}</th>
+            </tr>
+            <tr>
+                <td class="equipments-cell-1">Data da próxima manutenção preventiva</td>
+                <th colspan="3" ng-repeat="e in lmisNextMaintenance">{{e.total}}</th>
+            </tr>
+            <tr>
+                <td class="equipments-cell-1">Nº de horas remanescentes</td>
+                <th colspan="3" ng-repeat="e in lmisRemainingHours">{{e.total}}</th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="bottom-section" style="margin-top: 20px;">
         <table>
             <tr>
-                <td>
-                    <span openlmis-message="view.rnr.mmia.createBy"></span>
-                    <span> : {{submitterSignature}}</span>
-                </td>
-                <td>
+                <th colspan="3" class="border-bottom">
+                    <p><span openlmis-message="view.rnr.mmia.comments"></span>: {{clientSubmittedNotes}}</p>
+                </th>
+            </tr>
+            <tr>
+                <th class="border-bottom">
+                    <p><span openlmis-message="view.rnr.mmia.createBy"></span>: {{submitterSignature}}</p>
+                </th>
+                <th style="width: 5%"></th>
+                <th class="border-bottom">
                     <span openlmis-message="view.rnr.mmia.vistor"></span>
                     <span> : {{approverSignature}}</span>
-                </td>
-                <td>
-                    <span openlmis-message="view.rnr.mmia.dateOfCreate"></span>
-                    <span> : </span>
-                </td>
+                </th>
+            </tr>
+            <tr>
+                <th class="border-bottom">
+                    <p><span openlmis-message="view.rnr.mmia.dateOfCreate"></span>: {{submittedDate}}</p>
+                </th>
+                <th></th>
+                <th></th>
             </tr>
         </table>
 
-        <div>Nota: Mapa de Preenchimento Obrigatório Mensal HdD em Conjunto com a Farmácia da Unidade Sanitária/ ou DPM
-        </div>
+        <!--
+        <div style="margin-top: 20px;">Nota: Mapa de Preenchimento Obrigatório Mensal HdD em Conjunto com a Farmácia da Unidade Sanitária/ ou DPM</div>
         <div ng-if="rnr.reportType === 'new'">Versão nº 9 21 Fev2020 TLD90 DS</div>
         <div ng-if="rnr.reportType === 'old'">Versão no 5 14Nov 2012</div>
+        -->
     </div>
 
+    <!--
     <div class="align-right">
         <button class="btn btn-primary btn-download btn-download-pdf" ng-click="downloadPdf()" openlmis-message="view.rnr.mmia.download.button"></button>
     </div>
+    -->
 
+    <!--
     <div class="align-right">
         <button class="btn btn-primary btn-download btn-download-simam" ng-click="downloadSimam()" openlmis-message="view.rnr.download.simam.button"></button>
     </div>
+    -->
 </div>
 

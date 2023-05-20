@@ -35,6 +35,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class RestFacilityController extends BaseController {
 
   public static final String FACILITY = "facility";
+//  public static final String EQUIPMENT = "equipment";
+
   @Autowired
   RestFacilityService restFacilityService;
 
@@ -48,4 +50,16 @@ public class RestFacilityController extends BaseController {
     }
     return RestResponse.response(FACILITY, facilityFeedDTO);
   }
+
+  // amussa delete
+//  @RequestMapping(value = "/rest-api/facilities/{facilityCode}/equipment", method = GET, headers = ACCEPT_JSON)
+//  public ResponseEntity<RestResponse> getFacilityEquipment(@PathVariable String facilityCode) {
+//    FacilityFeedDTO facilityFeedDTO;
+//    try {
+//      facilityFeedDTO = restFacilityService.getFacilityByCode(facilityCode);
+//    } catch (DataException e) {
+//      return RestResponse.error(e.getOpenLmisMessage(), BAD_REQUEST);
+//    }
+//    return RestResponse.response(EQUIPMENT, "Hello");
+//  }
 }

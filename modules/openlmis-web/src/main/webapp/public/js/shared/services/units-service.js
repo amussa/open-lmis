@@ -1,6 +1,7 @@
 services.factory('UnitService', function (messageService) {
 
   var programNameFormatter = function (programName) {
+    programName = programName.replace(/^LMIS /, '');
     if (programName === 'VIA Classica') {
       return messageService.get("label.programname.balancerequisition");
     }

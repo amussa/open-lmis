@@ -119,7 +119,7 @@ public class RestRequisitionService {
        proposedPeriod =
           findReportPeriod(report.getActualPeriodStartDate(), report.getActualPeriodEndDate(), reportingFacility.getId(), reportingProgram.getId());
     }
-    Rnr rnr = requisitionService.initiate(reportingFacility, reportingProgram, userId, EMERGENCY, proposedPeriod, report.getServiceLineItems());
+    Rnr rnr = requisitionService.initiate(reportingFacility, reportingProgram, userId, EMERGENCY, proposedPeriod, report.getServiceLineItems(), report.getProducts());
 
     restRequisitionCalculator.validateProducts(report.getProducts(), rnr);
 
@@ -222,7 +222,7 @@ public class RestRequisitionService {
       rnr = requisitionService.getFullRequisitionById(rnrs.get(0).getId());
 
     } else {
-      rnr = requisitionService.initiate(reportingFacility, reportingProgram, userId, report.getEmergency(), period, null);
+      rnr = requisitionService.initiate(reportingFacility, reportingProgram, userId, report.getEmergency(), period, null, report.getNonFullSupplyProducts());
     }
 
     List<RnrLineItem> fullSupplyProducts = new ArrayList<>();

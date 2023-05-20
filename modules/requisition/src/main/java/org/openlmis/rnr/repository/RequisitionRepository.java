@@ -173,8 +173,16 @@ public class RequisitionRepository {
     
     private void insertLineItems(Rnr requisition, List<RnrLineItem> lineItems) {
         for (RnrLineItem lineItem : lineItems) {
+            Product product = productMapper.getByCode(lineItem.getProductCode());
             lineItem.setRnrId(requisition.getId());
             lineItem.setModifiedBy(requisition.getModifiedBy());
+            lineItem.setDispensingUnit(product.getDispensingUnit());
+            lineItem.setMaxMonthsOfStock(3d);
+            lineItem.setDosesPerMonth(0);
+            lineItem.setDosesPerDispensingUnit(product.getDosesPerDispensingUnit());
+            lineItem.setPackSize(product.getPackSize());
+            lineItem.setFullSupply(product.getFullSupply());
+            lineItem.setSkipped(false);
             rnrLineItemMapper.insert(lineItem, lineItem.getPreviousNormalizedConsumptions().toString());
         }
     }
@@ -291,8 +299,11 @@ public class RequisitionRepository {
     public Rnr getById(Long rnrId) {
         Rnr requisition = requisitionMapper.getById(rnrId);
         if (requisition == null) throw new DataException("error.rnr.not.found");
-        requisition.setNewProducts(productMapper.getProductListForNewVersion());
-        requisition.setNewRegimes(regimenMapper.getNewVersionRegimes());
+        String versionCodeFromHeader = LmisThreadLocalUtils.getHeader(LmisThreadLocalUtils.HEADER_VERSION_CODE);
+        if (versionCodeFromHeader!=null && Long.valueOf(versionCodeFromHeader) >= 87) {
+            requisition.setNewProducts(productMapper.getProductListForNewVersion());
+            requisition.setNewRegimes(regimenMapper.getNewVersionRegimes());
+        }
         return requisition;
     }
 

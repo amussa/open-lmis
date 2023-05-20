@@ -14,7 +14,7 @@ import java.lang.reflect.Field;
 public class PatientQuantificationLineItem extends LineItem {
 
     private String category;
-    private Integer total;
+    private String total;
     private String tableName;
     private Integer displayOrder;
 

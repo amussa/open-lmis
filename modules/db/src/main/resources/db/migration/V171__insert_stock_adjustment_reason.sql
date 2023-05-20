@@ -1,2 +1,2 @@
-INSERT INTO losses_adjustments_types (name, description, additive, displayOrder, category)
-VALUES ('BROKEN', 'Broken', FALSE, 43, 'NEGATIVE_ADJUST');
+INSERT INTO "losses_adjustments_types" ("name", "description", "additive", "displayorder", "createddate", "isdefault", "category") VALUES ('LOSSES_DUE_TO_DAMAGE', 'Losses due to damage', false, 43, '2022-11-25 19:30:06.565709', NULL, 'NEGATIVE_ADJUST');
+INSERT INTO "losses_adjustments_types" ("name", "description", "additive", "displayorder", "createddate", "isdefault", "category") VALUES ('LOSSES_DUE_TO_BREAKAGE', 'Losses duw to breakage', false, 44, '2022-11-25 19:30:06.565709', NULL, 'NEGATIVE_ADJUST');

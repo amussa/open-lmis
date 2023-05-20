@@ -1,4 +1,4 @@
-function ViewRnrMmiaController($scope, $route, Requisitions, messageService, downloadPdfService, downloadSimamService) {
+function ViewRnrMmiaController($scope, $route, $filter, Requisitions, DateFormatService, messageService, downloadPdfService, downloadSimamService) {
     $scope.rnrLineItems = [];
     $scope.regimens = [];
     $scope.regimeTotalPatients = 0;
@@ -99,6 +99,87 @@ function ViewRnrMmiaController($scope, $route, Requisitions, messageService, dow
 
     $(".btn-download-pdf").hide();
     $(".btn-download-simam").hide();
+
+    $scope.initLmisEquipments = function (infoItems) {
+        let rowsGroup = 13
+        let equipments = infoItems.length / rowsGroup
+        $scope.lmisEquipmentHeaders = []
+        $scope.lmisEquipmentHeaders.push("Descrição")
+        for (let h = 1; h <= equipments; h++) {
+            $scope.lmisEquipmentHeaders.push("Equipamento " + h)
+        }
+        $scope.lmisEquipmentRows = []
+        for (let i = 0; i < rowsGroup; i++) {
+            let columns = [];
+            columns.push(infoItems[i].category)
+            for (let e = 1; e <= equipments; e++) {
+                let index = (rowsGroup * e) - (rowsGroup - i);
+                columns.push(infoItems[index].total)
+            }
+            $scope.lmisEquipmentRows.push(columns)
+        }
+    }
+
+    $scope.initLmisEquipments2 = function (patientQuantifications) {
+        $scope.lmisEquipments = $filter('orderBy')($filter('filter')(patientQuantifications, function (item) {
+            return item.category === 'Equipamento' || item.category === 'Equipment';
+        }), 'id');
+
+        $scope.lmisSeries = $filter('orderBy')($filter('filter')(patientQuantifications, function (item) {
+            return item.category === 'Número de Serie' || item.category === 'Serial number';
+        }), 'id');
+
+        $scope.lmisTrials = ['DPI', 'CV DBS', 'CV PLASMA', ''].join().repeat($scope.lmisEquipments.length).split(',').slice(0, -1);
+
+        let lmisPatientsDpi = $filter('orderBy')($filter('filter')(patientQuantifications, function (item) {
+            return item.category === 'Nº de pacientes DPI testados' || item.category === 'Nr. of DPI patients tested';
+        }), 'id');
+
+        let lmisPatientsDbs = $filter('orderBy')($filter('filter')(patientQuantifications, function (item) {
+            return item.category === 'Nº de pacientes CV(DBS) testados' || item.category === 'Nr. of CV(DBS) patients tested';
+        }), 'id');
+
+        let lmisPatientsPlasma = $filter('orderBy')($filter('filter')(patientQuantifications, function (item) {
+            return item.category === 'Nº de pacientes CV(PLASMA) testados' || item.category === 'Nr. of CV(PLASMA) patients tested';
+        }), 'id');
+
+        $scope.lmisPatients = $filter('orderBy')(lmisPatientsDpi.concat(lmisPatientsDbs, lmisPatientsPlasma), 'id');
+
+        let lmisTestsDpi = $filter('orderBy')($filter('filter')(patientQuantifications, function (item) {
+            return item.category === 'Nº de testes DPI realizados pelo equipamento' || item.category === 'Nr. of DPI tests performed by the equipment';
+        }), 'id');
+
+        let lmisTestsDbs = $filter('orderBy')($filter('filter')(patientQuantifications, function (item) {
+            return item.category === 'Nº de testes CV(DBS) realizados pelo equipamento' || item.category === 'Nr. of CV(DBS) tests performed by the equipment';
+        }), 'id');
+
+        let lmisTestsPlasma = $filter('orderBy')($filter('filter')(patientQuantifications, function (item) {
+            return item.category === 'Nº de testes CV(PLASMA) realizados pelo equipamento' || item.category === 'Nr. of CV(PLASMA) tests performed by the equipment';
+        }), 'id');
+
+        $scope.lmisTests = $filter('orderBy')(lmisTestsDpi.concat(lmisTestsDbs, lmisTestsPlasma), 'id');
+
+        $scope.lmisDaysEquipmentWorked = $filter('orderBy')($filter('filter')(patientQuantifications, function (item) {
+            return item.category === 'Nº de dias em que o equipamento funcionou' || item.category === 'Nr. of days the equipment worked';
+        }), 'id');
+
+        $scope.lmisDaysEquipmentBroked = $filter('orderBy')($filter('filter')(patientQuantifications, function (item) {
+            return item.category === 'Nº de dias em que o equipamento esteve avariado' || item.category === 'Nr. of days the equipment has been out of order';
+        }), 'id');
+
+        $scope.lmisLastMaintenance = $filter('orderBy')($filter('filter')(patientQuantifications, function (item) {
+            return item.category === 'Data da última manutenção preventiva' || item.category === 'Date of last preventive maintenance';
+        }), 'id');
+
+        $scope.lmisNextMaintenance = $filter('orderBy')($filter('filter')(patientQuantifications, function (item) {
+            return item.category === 'Data da próxima manutenção preventiva' || item.category === 'Date of next preventive maintenance';
+        }), 'id');
+
+        $scope.lmisRemainingHours = $filter('orderBy')($filter('filter')(patientQuantifications, function (item) {
+            return item.category === 'Nº de horas remanescentes' || item.category === 'Nr. of remaining hours';
+        }), 'id');
+
+    }
     $scope.loadMmiaDetail = function () {
         Requisitions.get({ id: $route.current.params.rnr, operation: "skipped" }, function (data) {
             $scope.rnr = data.rnr;
@@ -122,14 +203,17 @@ function ViewRnrMmiaController($scope, $route, Requisitions, messageService, dow
                 $scope.initTherapeuticLines();
             } else {
                 $scope.rnr.reportType = "new";
-                $scope.initPatient();
-                $scope.initProduct();
-                $scope.initRegime();
-                $scope.initTherapeuticLines();
+                $scope.rnrLineItems = data.rnr.fullSupplyLineItems;
+                //$scope.initLmisEquipments(data.rnr.patientQuantifications);
+                $scope.initLmisEquipments2(data.rnr.patientQuantifications);
+                //$scope.initPatient();
+                //$scope.initProduct();
+                //$scope.initRegime();
+                //$scope.initTherapeuticLines();
             }
-
+            $scope.clientSubmittedNotes = data.rnr.clientSubmittedNotes;
+            $scope.submittedDate = DateFormatService.formatDateWithLocaleNoDay(data.rnr.submittedDate);
             parseSignature($scope.rnr.rnrSignatures);
-
             downloadPdfService.init($scope, $scope.rnr.id);
             downloadSimamService.init($scope, $scope.rnr.id);
         });

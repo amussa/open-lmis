@@ -372,6 +372,13 @@ function RequisitionReportController($scope, $controller, RequisitionReportServi
   $scope.getRedirectUrl = function () {
     var url = "/public/pages/logistics/rnr/index.html#/";
     var urlMapping = {
+      "HOLOGIC PANTER": "view-requisition-mmia/",
+      "ABBOTT M2000": "view-requisition-mmia/",
+      "ABBOTT ALINITY M": "view-requisition-mmia/",
+      "ROCHE COBAS 6800": "view-requisition-mmia/",
+      "ROCHE CAPCTM 96": "view-requisition-mmia/",
+      "HOLOGIC PANTER": "view-requisition-mmia/",
+      "BIOSECURITY MATERIAL": "view-requisition-mmia/",
       "VIA": "view-requisition-via/",
       "Balance Requisition": "view-requisition-via/",
       "Requisição Balancete": "view-requisition-via/",

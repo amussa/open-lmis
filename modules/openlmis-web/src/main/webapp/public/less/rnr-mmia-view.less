@@ -1,7 +1,7 @@
 .mmia-form {
   display: block;
   width: 994px;
-  font-size: 16px;
+  font-size: 14px;
   margin: 0 auto;
 
   * {
@@ -71,7 +71,8 @@
     }
 
     th {
-      height: 37.6px;
+      //height: 37.6px;
+      height: auto;
     }
   }
 
@@ -90,6 +91,10 @@
     th {
       background-color: #d0d0d0;
       word-break: break-all;
+      font-size: 12px;
+      word-break: normal;
+      word-wrap: normal;
+      padding: 0 5px;
     }
     td:nth-child(4) {
       background-color: #f0f0f0;
@@ -268,4 +273,46 @@ table.patient-form {
 .btn-download {
   font-size: 1em;
   padding: .5em;
+}
+
+.equipments-cell-1 {
+  width: 25% !important;
+  text-align: left !important;
+  padding: 5px;
+}
+
+.mmia-form table {
+  border: none;
+}
+
+.mmia-form {
+  .bottom-section {
+    width: 100%;
+
+    th {
+      text-align: left;
+      padding: 5px;
+    }
+
+    table th {
+      border: none;
+    }
+
+    .border-bottom {
+      border-bottom: 1px solid black !important;
+    }
+  }
+
+  .head-section {
+    .border-bottom {
+      padding: 5px;
+      border: none;
+      border-bottom: 1px solid black;
+    }
+
+    .border-none {
+      width: 10px;
+      border: none;
+    }
+  }
 }

@@ -111,7 +111,7 @@ public class RequisitionService {
     
     @Transactional
     public Rnr initiate(Facility facility, Program program, Long modifiedBy, Boolean emergency,
-                        ProcessingPeriod proposedPeriod, List<ServiceLineItem> serviceLineItems) {
+                        ProcessingPeriod proposedPeriod, List<ServiceLineItem> serviceLineItems, List<RnrLineItem> products) {
         
         if (!requisitionPermissionService.hasPermission(modifiedBy, facility, program, CREATE_REQUISITION)) {
             throw new DataException(RNR_OPERATION_UNAUTHORIZED);
@@ -165,10 +165,11 @@ public class RequisitionService {
         RegimenTemplate regimenTemplate = regimenColumnService.getRegimenTemplateByProgramId(program.getId());
         
         Rnr requisition = new Rnr(facility, program, period, emergency, facilityTypeApprovedProducts, regimens, modifiedBy);
+        requisition.setFullSupplyLineItems(products);
         requisition.setCreatedDate(dbMapper.getCurrentTimeStamp());
         populateAllocatedBudget(requisition);
         
-        calculationService.fillFieldsForInitiatedRequisition(requisition, rnrTemplate, regimenTemplate);
+        //calculationService.fillFieldsForInitiatedRequisition(requisition, rnrTemplate, regimenTemplate);
         calculationService.fillReportingDays(requisition);
         if (configurationSettingsService.getBoolValue("RNR_COPY_SKIPPED_FROM_PREVIOUS_RNR")) {
             calculationService.copySkippedFieldFromPreviousPeriod(requisition);
@@ -298,7 +299,7 @@ public class RequisitionService {
         
         ProgramRnrTemplate template = rnrTemplateService.fetchProgramTemplate(savedRnr.getProgram().getId());
         
-        calculationService.perform(savedRnr, template);
+        // calculationService.perform(savedRnr, template);
         savedRnr.setFieldsForApproval();
         
         requisitionRepository.update(savedRnr);

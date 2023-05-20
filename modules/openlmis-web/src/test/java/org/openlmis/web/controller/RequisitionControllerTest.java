@@ -54,8 +54,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 import static org.openlmis.core.domain.RightName.APPROVE_REQUISITION;
 import static org.openlmis.rnr.builder.RequisitionBuilder.defaultRequisition;
@@ -134,12 +133,12 @@ public class RequisitionControllerTest {
     Program program = new Program(2L);
     ProcessingPeriod period = new ProcessingPeriod();
     Rnr initiatedRnr = new Rnr(facility, program, period);
-    when(requisitionService.initiate(facility, program, USER_ID, false, null, null)).thenReturn(initiatedRnr);
+    when(requisitionService.initiate(facility, program, USER_ID, false, null, null, null)).thenReturn(initiatedRnr);
     when(requisitionService.findM(period)).thenReturn(5);
 
     ResponseEntity<OpenLmisResponse> response = controller.initiateRnr(1L, 2L, false, request);
 
-    verify(requisitionService).initiate(facility, program, USER_ID, false, null, null);
+    verify(requisitionService).initiate(facility, program, USER_ID, false, null, null, null);
     verify(requisitionService).findM(period);
     assertThat((Rnr) response.getBody().getData().get(RNR), is(initiatedRnr));
     assertThat((Integer) response.getBody().getData().get(NUMBER_OF_MONTHS), is(5));
@@ -262,7 +261,7 @@ public class RequisitionControllerTest {
   @Test
   public void shouldGiveErrorIfInitiatingFails() throws Exception {
     String errorMessage = "error-message";
-    doThrow(new DataException(errorMessage)).when(requisitionService).initiate(new Facility(1L), new Program(2L), USER_ID, false, null, null);
+    doThrow(new DataException(errorMessage)).when(requisitionService).initiate(new Facility(1L), new Program(2L), USER_ID, false, null, null, null);
     ResponseEntity<OpenLmisResponse> response = controller.initiateRnr(1L, 2L, false, request);
     assertThat(response.getBody().getErrorMsg(), is(equalTo(errorMessage)));
   }
