@@ -82,6 +82,7 @@ public class RnrLineItem extends LineItem {
   private Integer beginningBalance;
   private List<LossesAndAdjustments> lossesAndAdjustments = new ArrayList<>();
   private Integer totalLossesAndAdjustments = 0;
+  private Integer totalLosses = 0;
   private Integer stockInHand;
   private Integer stockOutDays;
   private Integer newPatientCount;
@@ -222,7 +223,7 @@ public class RnrLineItem extends LineItem {
 
     if (null != program && !program.isMmiaRequisition()) {
       if (rnrColumn.isFormulaValidationRequired()) {
-        validQuantityDispensed = (quantityDispensed == (beginningBalance + quantityReceived + totalLossesAndAdjustments - stockInHand));
+        validQuantityDispensed = (quantityDispensed == (beginningBalance + quantityReceived + totalLossesAndAdjustments + totalLosses - stockInHand));
       }
       if (!validQuantityDispensed) {
         LOGGER.warn("facilityId {} programId {}, productCode {} is not match code",
@@ -567,4 +568,12 @@ public class RnrLineItem extends LineItem {
     return lossAndAdjustmentTypeFromList.getAdditive();
   }
 
+  /**
+   * The totalLossesAndAdjustments variable is representing only the total of adjustments,
+   * due to the separation of Losses and Adjustments.
+   * @return
+   */
+  public Integer getTotalAdjustments() {
+    return totalLossesAndAdjustments;
+  }
 }

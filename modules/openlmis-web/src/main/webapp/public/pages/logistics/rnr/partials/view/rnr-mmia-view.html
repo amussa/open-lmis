@@ -84,6 +84,7 @@
             <th openlmis-message="view.rnr.mmia.initialAmount"></th>
             <th openlmis-message="view.rnr.mmia.entries"></th>
             <th openlmis-message="view.rnr.mmia.issues"></th>
+            <th openlmis-message="view.rnr.mmia.losses"></th>
             <th openlmis-message="view.rnr.mmia.adjustments"></th>
             <th openlmis-message="view.rnr.mmia.inventory"></th>
             <th openlmis-message="view.rnr.mmia.validate"></th>
@@ -99,6 +100,7 @@
             <td>{{item.beginningBalance}}</td>
             <td>{{item.quantityReceived}}</td>
             <td>{{item.quantityDispensed}}</td>
+            <td>{{item.totalLosses}}</td>
             <td>{{item.totalLossesAndAdjustments}}</td>
             <td>{{item.stockInHand}}</td>
             <td><span ng-show="item.expirationDate">{{item.expirationDate}}</span></td>

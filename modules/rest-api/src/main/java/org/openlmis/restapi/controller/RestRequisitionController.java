@@ -57,6 +57,7 @@ public class RestRequisitionController extends BaseController {
     Rnr requisition;
 
     try {
+
       requisition = restRequisitionService.submitReport(report, loggedInUserId(principal));
     } catch (DataException e) {
       requisitionBackupRequestBodyService.backUpRequisitionRequestBody(report, loggedInUserId(principal), e.toString());
