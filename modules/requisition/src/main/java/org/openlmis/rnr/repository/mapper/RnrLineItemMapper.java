@@ -28,14 +28,14 @@ public interface RnrLineItemMapper {
   @Insert({"INSERT INTO requisition_line_items",
     "(rnrId, productCode, product, productDisplayOrder, productCategory, productCategoryDisplayOrder, previousStockInHand, beginningBalance,",
     "quantityReceived, quantityDispensed, dispensingUnit,dosesPerMonth, dosesPerDispensingUnit, maxMonthsOfStock,",
-    "totalLossesAndAdjustments, packsToShip, packSize, price, roundToZero, packRoundingThreshold, fullSupply,",
+    "totalLossesAndAdjustments, totallosses, packsToShip, packSize, price, roundToZero, packRoundingThreshold, fullSupply,",
     "newPatientCount, stockOutDays, previousNormalizedConsumptions, reportingDays, skipped, ",
     "modifiedBy,createdBy)",
     "VALUES (",
     "#{lineItem.rnrId}, #{lineItem.productCode}, #{lineItem.product}, #{lineItem.productDisplayOrder}, #{lineItem.productCategory},",
     "#{lineItem.productCategoryDisplayOrder}, #{lineItem.previousStockInHand}, #{lineItem.beginningBalance}, #{lineItem.quantityReceived}, #{lineItem.quantityDispensed},",
     "#{lineItem.dispensingUnit},#{lineItem.dosesPerMonth}, #{lineItem.dosesPerDispensingUnit}, #{lineItem.maxMonthsOfStock},",
-    "#{lineItem.totalLossesAndAdjustments}, #{lineItem.packsToShip}, #{lineItem.packSize}, #{lineItem.price},#{lineItem.roundToZero},",
+    "#{lineItem.totalLossesAndAdjustments}, #{lineItem.totalLosses}, #{lineItem.packsToShip}, #{lineItem.packSize}, #{lineItem.price},#{lineItem.roundToZero},",
     "#{lineItem.packRoundingThreshold}, #{lineItem.fullSupply}, #{lineItem.newPatientCount}, #{lineItem.stockOutDays},",
     "#{previousNormalizedConsumptions}, #{lineItem.reportingDays}, #{lineItem.skipped} , #{lineItem.modifiedBy}, #{lineItem.createdBy})"})
   @Options(useGeneratedKeys = true, keyProperty = "lineItem.id")
