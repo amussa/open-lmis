@@ -3,6 +3,7 @@ package org.openlmis.report.builder;
 import org.apache.ibatis.jdbc.SQL;
 import org.openlmis.report.model.params.StockReportParam;
 
+import java.util.List;
 import java.util.Map;
 
 import static org.apache.ibatis.jdbc.SqlBuilder.*;
@@ -11,10 +12,11 @@ public class ProductLotInfoQueryBuilder {
 
     public static String get(Map params) {
         BEGIN();
-        return new SQL()
+        String sql = new SQL()
                 .SELECT("*")
                 .FROM("(" + subQuery(params) + ") as tmp")
                 .WHERE("stockcardFacilityId is not null and rn = 1").toString();
+        return sql;
     }
 
     private static String getProductLotInfo(Map params) {
@@ -72,6 +74,11 @@ public class ProductLotInfoQueryBuilder {
             if(null != filter.getFacilityId()) {
                 WHERE("facilities.id = #{filterCriteria.facilityId}");
             }
+            if(null != filter.getSelectedFacilityIds()) {
+                //WHERE("facilities.id IN #{filterCriteria.selectedFacilityIds}");
+                WHERE("facilities.id IN " + buildInClause(filter.getSelectedFacilityIds()));
+            }
+
             if (null != filter.getProductCode()) {
                 WHERE("products.code = #{filterCriteria.productCode}");
             }
@@ -80,4 +87,20 @@ public class ProductLotInfoQueryBuilder {
             }
         }
     }
+
+    private static String buildInClause(List<Integer> selectedFacilityIds) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("(");
+        for (int i = 0; i < selectedFacilityIds.size(); i++) {
+            sb.append("#{filterCriteria.selectedFacilityIds[");
+            sb.append(i);
+            sb.append("]}");
+            if (i < selectedFacilityIds.size() - 1) {
+                sb.append(",");
+            }
+        }
+        sb.append(")");
+        return sb.toString();
+    }
+
 }

@@ -20,7 +20,7 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 @NoArgsConstructor
 public class CubesReportProxy {
 
-    private static final String CUBES_ADDRESS = "http://localhost:5555";
+    public static final String CUBES_ADDRESS = "http://pg.app.co.mz:5555";
     private static final String CUBES_REQUEST_PREFIX = "\\/cubesreports";
 
     @Autowired

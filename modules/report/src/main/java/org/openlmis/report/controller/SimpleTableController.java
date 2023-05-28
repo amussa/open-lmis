@@ -33,6 +33,7 @@ import org.openlmis.report.mapper.AppInfoMapper;
 import org.openlmis.report.model.dto.RequisitionDTO;
 import org.openlmis.report.model.params.RequisitionReportsParam;
 import org.openlmis.report.service.SimpleTableService;
+import org.openlmis.web.controller.cubesreports.CubesReportProxy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -162,14 +163,14 @@ public class SimpleTableController extends BaseController {
     private HashMap<String, URI> getURIMaps() {
         HashMap<String, URI> map = new HashMap<>();
         try {
-            map.put("facilities.csv", new URI("http://localhost:5555/cube/facilities/facts?format=csv"));
-            map.put("products.csv", new URI("http://localhost:5555/cube/requisition_line_items/members/products?format=csv"));
-            map.put("latest_stock_at_different_facilities.csv", new URI("http://localhost:5555/cube/vw_stock_movements/members/stock?format=csv"));
-            map.put("movement_history.csv", new URI("http://localhost:5555/cube/vw_stock_movements/members/movement?format=csv"));
-            map.put("requisition_mmia.csv", new URI("http://localhost:5555/cube/requisition_line_items/facts?cut=products:MMIA&format=csv"));
-            map.put("requisition_via.csv", new URI("http://localhost:5555/cube/requisition_line_items/facts?cut=products:ESS_MEDS&format=csv"));
-            map.put("regimens.csv", new URI("http://localhost:5555/cube/requisitions/members/regimen?format=csv"));
-            map.put("patient_quantification.csv", new URI("http://localhost:5555/cube/requisitions/members/patient_quantification?format=csv"));
+            map.put("facilities.csv", new URI(CubesReportProxy.CUBES_ADDRESS + "/cube/facilities/facts?format=csv"));
+            map.put("products.csv", new URI(CubesReportProxy.CUBES_ADDRESS + "/cube/requisition_line_items/members/products?format=csv"));
+            map.put("latest_stock_at_different_facilities.csv", new URI(CubesReportProxy.CUBES_ADDRESS + "/cube/vw_stock_movements/members/stock?format=csv"));
+            map.put("movement_history.csv", new URI(CubesReportProxy.CUBES_ADDRESS + "/cube/vw_stock_movements/members/movement?format=csv"));
+            map.put("requisition_mmia.csv", new URI(CubesReportProxy.CUBES_ADDRESS + "/cube/requisition_line_items/facts?cut=products:MMIA&format=csv"));
+            map.put("requisition_via.csv", new URI(CubesReportProxy.CUBES_ADDRESS + "/cube/requisition_line_items/facts?cut=products:ESS_MEDS&format=csv"));
+            map.put("regimens.csv", new URI(CubesReportProxy.CUBES_ADDRESS + "/cube/requisitions/members/regimen?format=csv"));
+            map.put("patient_quantification.csv", new URI(CubesReportProxy.CUBES_ADDRESS + "/cube/requisitions/members/patient_quantification?format=csv"));
         } catch (URISyntaxException e) {
             logger.error(e.getMessage());
         }

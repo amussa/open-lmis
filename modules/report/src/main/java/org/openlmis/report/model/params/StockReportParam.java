@@ -12,6 +12,7 @@ import org.openlmis.report.annotations.RequiredParam;
 import org.openlmis.report.generator.RegionLevel;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -27,6 +28,7 @@ public class StockReportParam {
     private Integer provinceId;
     private Integer districtId;
     private Integer facilityId;
+    private List<Integer> selectedFacilityIds;
     private String productCode;
     private String provinceCode;
     private String districtCode;
@@ -47,6 +49,10 @@ public class StockReportParam {
             }
             if (isValidParam(paraMap,"facilityId")) {
                 setFacilityId(Integer.parseInt(paraMap.get("facilityId").toString().trim()));
+            }
+            if (isValidParam(paraMap,"selectedFacilityIds")) {
+                //setSelectedFacilityIds(paraMap.get("selectedFacilityIds").toString().trim().replace("[", "(").replace("]", ")"));
+                setSelectedFacilityIds((List<Integer>) paraMap.get("selectedFacilityIds"));
             }
             if (isValidParam(paraMap, "productCode")) {
                 setProductCode(paraMap.get("productCode").toString().trim());

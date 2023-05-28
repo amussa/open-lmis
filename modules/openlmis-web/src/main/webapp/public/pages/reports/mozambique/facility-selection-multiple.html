@@ -1,0 +1,41 @@
+<div class="report-selection program-choose">
+    <label class="labels" openlmis-message="label.facility"></label>
+
+    <div style="
+        z-index: 100;
+        position: fixed;
+        left: 0;
+        top: 0;
+        min-height: 100%;
+        min-width: 100%;"
+         ng-style="{display: showFacilityList ? 'block' : 'none'}"
+         ng-click="closeFacilityListDialog()">
+    </div>
+
+    <div class="form-fields">
+        <a ng-click="clickFacilitySelection()" class="program-selection" ng-class="showFacilityList && 'program-selection-down'" style="width: 400px;" title="{{selectedFacilityNames.join(',\n')}}">
+            {{selectedFacilityNames.join(', ')}}
+            <span><b ng-class="showFacilityList ? 'selection-down-icon' : 'selection-up-icon'"></b></span>
+        </a>
+        <div ng-show="showFacilityList" class="program-list" style="width: 423px; height: 300px; overflow: auto;">
+            <ul>
+                <li ng-click="selectALL()">
+                    <div>
+                        <span class="selection-checkbox" ng-class="selectedFacilityAllClass"></span>
+                        <span openlmis-message="report.option.all"></span>
+                    </div>
+                </li>
+                <li ng-repeat="facility in facilities"
+                    value="{{facility.id}}"
+                    ng-click="selectFacility(facility.id)">
+                    <div>
+                        <span class="selection-checkbox" ng-class="facility.isSelected ? 'selection-checkbox__all' : 'selection-checkbox__not-select'"></span>
+                        <span>{{facility.name}}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <span class="field-error" ng-show="invalidFacilities" openlmis-message="report.missing.facility"></span>
+</div>

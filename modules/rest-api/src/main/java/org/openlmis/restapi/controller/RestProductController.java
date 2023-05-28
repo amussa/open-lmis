@@ -56,10 +56,8 @@ public class RestProductController extends BaseController {
 
   @RequestMapping(value = "/rest-api/temp86-notice-kit-change")
   public ResponseEntity<RestResponse> getTemp86FilterProduct(@RequestHeader(value = "VersionCode",required = false) String versionCode, Principal principal) {
-    if (KitProductFilterUtils
-        .isBiggerThanThresholdVersion(versionCode, KitProductFilterUtils.KIT_CODE_CHANGE_VERSION)) {
-      List<ProductResponse> products = restProductService
-          .getTemp86KitChangeProducts(loggedInUserId(principal));
+    if (KitProductFilterUtils.isBiggerThanThresholdVersion(versionCode, KitProductFilterUtils.KIT_CODE_CHANGE_VERSION)) {
+      List<ProductResponse> products = restProductService.getTemp86KitChangeProducts(loggedInUserId(principal));
       RestResponse restResponse = new RestResponse("kitChangeProducts", products);
       return new ResponseEntity<>(restResponse, HttpStatus.OK);
     }

@@ -8,6 +8,11 @@
      openlmis-message="menu.report.all.products.reports"></a>
 </li>
 
+<li ng-show="hasPermission('VIEW_STOCK_ON_HAND_REPORT')">
+  <a href="/public/pages/reports/mozambique/index.html#/stock-on-hand-all-products-all-facilities"
+     openlmis-message="menu.report.all.products.all.facilities.reports"></a>
+</li>
+
 <li ng-show="hasPermission('VIEW_STOCKOUT_REPORT') && isNewStockReportToggleOn">
   <a href="/public/pages/reports/mozambique/index.html#/stock-out-single-product"
      openlmis-message="menu.report.stockout.single.reports"></a>

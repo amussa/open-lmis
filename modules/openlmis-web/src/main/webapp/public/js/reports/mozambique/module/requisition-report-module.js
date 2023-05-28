@@ -1,86 +1,112 @@
 angular.module('requisition-report', ['openlmis', 'angularCombine', 'ngTable', 'ui.bootstrap.dialog', 'treeGrid', 'ngGrid', 'syncTimeTreeGrid', 'nsPopover']).config(['$routeProvider',
   function ($routeProvider) {
-    $routeProvider.when('/requisition', {
+    $routeProvider
+    .when('/requisition', {
       controller: RequisitionReportController,
       templateUrl: 'requisition/partials/list.html',
       reloadOnSearch: false
-    }).when('/stock-on-hand-single-product', {
+    })
+    .when('/stock-on-hand-single-product', {
       controller: StockOnHandSingleProductController,
       templateUrl: 'stock-on-hand/single-product/partials/list.html',
       reloadOnSearch: false
-    }).when('/stock-on-hand-all-products', {
+    })
+    .when('/stock-on-hand-all-products', {
       controller: StockOnHandAllProductsController,
       templateUrl: 'stock-on-hand/all-products/partials/list.html',
       reloadOnSearch: false
-    }).when('/app-version', {
+    })
+    .when('/stock-on-hand-all-products-all-facilities', {
+      controller: StockOnHandAllProductsAllFacilitiesController,
+      templateUrl: 'stock-on-hand/all-products-all-facilities/partials/list.html',
+      reloadOnSearch: false
+    })
+    .when('/app-version', {
       controller: VersionReportController,
       templateUrl: 'appVersion/partials/list.html',
       reloadOnSearch: false
-    }).when('/expiry-dates', {
+    })
+    .when('/expiry-dates', {
       controller: ExpiryDatesReportController,
       templateUrl: 'expiry-dates/partials/list.html',
       reloadOnSearch: false
-    }).when('/lot-expiry-dates', {
+    })
+    .when('/lot-expiry-dates', {
       controller: LotExpiryDatesReportController,
       templateUrl: 'expiry-dates/partials/lot-list.html',
       reloadOnSearch: false
-    }).when('/stock-out-all-products', {
+    })
+    .when('/stock-out-all-products', {
       controller: StockOutAllProductsReportController,
       templateUrl: 'stockout/all-products/partials/list.html',
       reloadOnSearch: false
-    }).when('/stock-out-single-product', {
+    })
+    .when('/stock-out-single-product', {
       controller: StockOutSingleProductReportController,
       templateUrl: 'stockout/single-product/partials/list.html',
       reloadOnSearch: false
-    }).when('/stock-out-single-product/:code', {
+    })
+    .when('/stock-out-single-product/:code', {
       controller: StockOutSingleProductReportController,
       templateUrl: 'stockout/single-product/partials/list.html',
       reloadOnSearch: false
-    }).when('/stock-movements/product/:productCode/facility/:facilityCode', {
+    })
+    .when('/stock-movements/product/:productCode/facility/:facilityCode', {
       controller: StockMovementReportController,
       templateUrl: 'stock-movements/partials/list.html',
       reloadOnSearch: false
-    }).when('/tracer-drugs', {
+    })
+    .when('/tracer-drugs', {
       controller: TracerDrugsReportController,
       templateUrl: 'tracer-drugs/partials/list.html',
       reloadOnSearch: false
-    }).when('/nos-drugs', {
+    })
+    .when('/nos-drugs', {
       controller: NosDrugsReportController,
       templateUrl: 'nos/partials/list.html',
       reloadOnSearch: false
-    }).when('/over-stock', {
+    })
+    .when('/over-stock', {
       controller: OverStockReportController,
       templateUrl: 'over-stock/partials/list.html',
       reloadOnSearch: false
-    }).when('/expired-products', {
+    })
+    .when('/expired-products', {
       controller: ExpiredProductsReportController,
       templateUrl: 'expired-products/partials/list.html',
       reloadOnSearch: false
-    }).when('/expiring-products', {
+    })
+    .when('/expiring-products', {
       controller: ExpiringProductsReportController,
       templateUrl: 'expiring-products/partials/list.html',
       reloadOnSearch: false
-    }).when('/consumption', {
+    })
+    .when('/consumption', {
       controller: ConsumptionReportController,
       templateUrl: 'consumption/partials/list.html',
       reloadOnSearch: false
-    }).when('/adjustment', {
+    })
+    .when('/adjustment', {
       controller: AdjustmentOccurrencesReportController,
       templateUrl: 'adjustment/partials/list.html',
       reloadOnSearch: false
-    }).when('/last-sync-time', {
+    })
+    .when('/last-sync-time', {
       controller: LastSyncTimeReportController,
       templateUrl: 'last-sync-time/partials/list.html',
       reloadOnSearch: false
-    }).when('/rapid-test', {
+    })
+    .when('/rapid-test', {
       controller: RapidTestReportController,
       templateUrl: 'rapid-test/partials/list.html',
       reloadOnSearch: false
-    }).when('/al-report', {
+    })
+    .when('/al-report', {
       controller: ALReportController,
       templateUrl: 'al-report/partials/list.html',
       reloadOnSearch: false
-    }).otherwise({redirectTo: '/'});
+    })
+    .otherwise({redirectTo: '/'});
   }]).run(
   function ($rootScope, AuthorizationService) {
   

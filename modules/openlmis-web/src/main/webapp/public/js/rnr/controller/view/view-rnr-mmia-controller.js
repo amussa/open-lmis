@@ -205,7 +205,18 @@ function ViewRnrMmiaController($scope, $route, $filter, Requisitions, DateFormat
                 $scope.rnr.reportType = "new";
                 $scope.rnrLineItems = data.rnr.fullSupplyLineItems;
                 //$scope.initLmisEquipments(data.rnr.patientQuantifications);
-                $scope.initLmisEquipments2(data.rnr.patientQuantifications);
+
+                let equipmentItems = data.rnr.patientQuantifications;
+                let programName = $route.current.params.programName;
+                let filteredByProgram = [];
+                for (let i = 0; i < equipmentItems.length; i += 13) {
+                    if (equipmentItems[i]?.category === "Equipamento" && equipmentItems[i]?.total?.toLowerCase() === programName?.toLowerCase()) {
+                        filteredByProgram.push(...equipmentItems.slice(i, i + 13));
+                    }
+                }
+                console.log(filteredByProgram);
+
+                $scope.initLmisEquipments2(filteredByProgram);
                 //$scope.initPatient();
                 //$scope.initProduct();
                 //$scope.initRegime();

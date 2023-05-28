@@ -1,4 +1,4 @@
-function StockOnHandAllProductsController($scope, $filter, $controller, NewReportService,
+function StockOnHandAllProductsAllFacilitiesController($scope, $filter, $controller, NewReportService,
                                           FeatureToggleService, $cacheFactory, $timeout,
                                           $window, messageService, DateFormatService,
                                           ReportGroupSortAndFilterService, ReportExportExcelService) {
@@ -118,15 +118,12 @@ function StockOnHandAllProductsController($scope, $filter, $controller, NewRepor
   };
 
   function loadReportAction() {
-    if ($scope.validateSingleFacility()) {
+    if ($scope.validateMultipleFacilities()) {
       var reportParams = $scope.reportParams;
       
       var allProductParams = {
         endTime: $filter('date')(reportParams.endTime, 'yyyy-MM-dd') + ' 23:59:59',
-        provinceId: reportParams.provinceId.toString(),
         selectedFacilityIds: $scope.selectedFacilityIds,
-        districtId: reportParams.districtId.toString(),
-        facilityId: reportParams.facilityId.toString(),
         reportType: 'stockOnHandAll'
       };
       

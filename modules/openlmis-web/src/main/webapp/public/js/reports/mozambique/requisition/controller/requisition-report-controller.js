@@ -395,7 +395,7 @@ function RequisitionReportController($scope, $controller, RequisitionReportServi
       url = url + urlMapping[selectedItem.programName];
     }
 
-    url += selectedItem.id + "?supplyType=fullSupply&page=1";
+    url += selectedItem.id + "?supplyType=fullSupply&page=1&programName="+selectedItem.programName;
     return url;
   };
 
