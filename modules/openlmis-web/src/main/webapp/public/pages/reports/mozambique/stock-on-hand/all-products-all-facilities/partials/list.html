@@ -1,7 +1,7 @@
 <div>
   <div id="control-bar">
 
-    <h3 class="report-title" openlmis-message="title.all.products.report"></h3>
+    <h3 class="report-title" openlmis-message="title.all.products.all.facilities.report"></h3>
 
 <!--    <div ng-include="'/public/pages/reports/mozambique/province-selection.html'"></div>-->
 <!--    <div ng-include="'/public/pages/reports/mozambique/district-selection.html'"></div>-->
@@ -37,6 +37,12 @@
           <span ng-show="sortType != 'productName'" class="icon-sort"></span>
           <span ng-show="sortType == 'productName' && !sortReverse" class="icon-sort-up"></span>
           <span ng-show="sortType == 'productName' && sortReverse" class="icon-sort-down"></span>
+        </th>
+        <th ng-click="sortType = 'facilityName'; sortReverse = !sortReverse; filterAndSort();" class="sortable sort-desc"
+            openlmis-message="report.health.facility">
+          <span ng-show="sortType != 'facilityName'" class="icon-sort"></span>
+          <span ng-show="sortType == 'facilityName' && !sortReverse" class="icon-sort-up"></span>
+          <span ng-show="sortType == 'facilityName' && sortReverse" class="icon-sort-down"></span>
         </th>
         <th ng-click="sortType = 'lotNumber'; sortReverse = !sortReverse; filterAndSort();" class="sortable sort-desc"
             openlmis-message="report.header.lotnumber">
@@ -85,6 +91,7 @@
             <a href="#/stock-movements/product/{{entry.productCode}}/facility/{{entry.facilityCode}}"
                ng-click="saveHistory()">{{entry.productName}} [{{entry.productCode}}]</a>
           </td>
+          <td>{{entry.facilityName}}</td>
           <td>{{entry.lotNumber}}</td>
           <td>{{entry.stockOnHandOfLot}}</td>
           <td style="text-align: right" ng-class="cmmStatusStyle(entry.stockOnHandStatus)"
