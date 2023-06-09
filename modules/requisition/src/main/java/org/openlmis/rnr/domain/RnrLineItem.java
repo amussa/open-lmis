@@ -79,7 +79,7 @@ public class RnrLineItem extends LineItem {
   private Integer quantityReceived;
   private Integer quantityDispensed;
   private Integer previousStockInHand;
-  private Integer beginningBalance;
+  private Integer beginningBalance = 0;
   private List<LossesAndAdjustments> lossesAndAdjustments = new ArrayList<>();
   private Integer totalLossesAndAdjustments = 0;
   private Integer totalLosses = 0;
@@ -197,13 +197,12 @@ public class RnrLineItem extends LineItem {
     String[] nonNullableFields = {BEGINNING_BALANCE, QUANTITY_RECEIVED, STOCK_IN_HAND, QUANTITY_DISPENSED};
 
     for (String fieldName : nonNullableFields) {
-      boolean nullOrNegative =
-          template.columnsVisible(fieldName) && (
-              getValueFor(fieldName) == null || (Integer) getValueFor(fieldName) < 0);
+      Object value = getValueFor(fieldName) == null ? 0 : getValueFor(fieldName);
+      boolean nullOrNegative = template.columnsVisible(fieldName) && (value == null || (Integer) value < 0);
       if (nullOrNegative) {
         LOGGER.error("facilityId {} programId {}, product code {} filed {} is {}",
             LmisThreadLocalUtils.getHeader(LmisThreadLocalUtils.HEADER_FACILITY_ID),
-            template.getProgramId(), productCode, fieldName, getValueFor(fieldName));
+            template.getProgramId(), productCode, fieldName, value);
         throw new DataException(RNR_FIELD_MANDATORY_NEGATIVE_OR_NULL);
       }
     }
