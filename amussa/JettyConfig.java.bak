@@ -1,0 +1,70 @@
+package org.openlmis.web;
+
+import org.mortbay.jetty.Handler;
+import org.mortbay.jetty.Request;
+import org.mortbay.jetty.Server;
+import org.mortbay.jetty.handler.AbstractHandler;
+import org.mortbay.jetty.nio.SelectChannelConnector;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Date;
+
+
+/**
+ * Configuração mal sucedida do setMaxIdleTime no jetty v6.1.26.
+ * Problema:
+ * — O jetty é lançado pelo plugin 'jetty' do Gradle.
+ * — O Spring carrega o bean, mas ele não é injetado devido ao jetty ser lançado pelo Gradle.
+ * — Assim, a injeção do bean nunca ocorre.
+ *
+ * dependencies {
+ *     compile 'org.mortbay.jetty:jetty:6.1.26'
+ * }
+ */
+@Configuration
+public class JettyConfig {
+
+	@Bean
+	public Server jettyServer() {
+		Server server = new Server();
+
+		SelectChannelConnector connector = new SelectChannelConnector();
+		connector.setPort(9091); // Define a porta do conector
+		connector.setMaxIdleTime(90000); // Define o tempo máximo de inatividade em milissegundos
+		connector.setSoLingerTime(-1);
+		server.addConnector(connector);
+		server.setHandler(createRequestHandler());
+		printDebugMessage("JettyConfig: Bean carregado pelo spring");
+		return server;
+	}
+
+	private Handler createRequestHandler() {
+		return new AbstractHandler() {
+			@Override
+			public void handle(String target, HttpServletRequest request, HttpServletResponse response, int dispatch) throws IOException, ServletException {
+				printDebugMessage("JettyConfig: Request received. Our Bean is in being used.");
+				((Request) request).setHandled(true);
+			}
+		};
+	}
+
+
+	public void printDebugMessage(String content) {
+		String fileName = "/tmp/test-jetty-config.txt";
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+			String message = new Date() + ": " + content;
+			System.out.println(message);
+			writer.write(message);
+		} catch (IOException e) {
+			System.out.println("Ocorreu um erro ao escrever no arquivo: " + e.getMessage());
+		}
+	}
+}
+

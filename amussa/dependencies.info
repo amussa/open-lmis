@@ -1,0 +1,12 @@
+versão do spring
+  ver /build.gradle:
+  org.springframework:spring-core:4.1.5.RELEASE
+
+versão do gradle
+  ./gradlew --version
+  gradle 3.3
+  groovy: 2.4.7
+
+versão do jetty
+  ver no cabeçalho da resposta http, no postman
+  jetty 6.1.26
