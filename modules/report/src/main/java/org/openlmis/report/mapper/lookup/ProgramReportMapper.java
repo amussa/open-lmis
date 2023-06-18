@@ -23,7 +23,7 @@ import java.util.List;
 public interface ProgramReportMapper {
     //TODO need to be refactor about program id
     //@Select("SELECT id, name, description, code FROM programs WHERE id in (1, 3, 5, 6, 10);")
-    @Select("SELECT id, name, description, code FROM programs WHERE id in (16, 17, 18, 19, 20, 21);")
+    @Select("SELECT id, name, description, code FROM programs WHERE id in (16, 17, 18, 19, 20, 21, 22);")
     List<Program> getRequisitionPrograms();
 
     @Select("SELECT id, name, description, code " +

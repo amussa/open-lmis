@@ -6,7 +6,7 @@
 #
 
 # Definir o valor da variável facilityid
-facilityid=1458
+facilityid=1447
 
 # Definir o valor da variável startdate
 startdate="2021-01-01 00:00:00"
