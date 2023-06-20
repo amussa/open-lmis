@@ -208,8 +208,10 @@ public class RestStockCardService {
         if (!stockEvent.isValidAdjustment())
             return "error.stockmanagement.invalidadjustment";
 //    if (!validProduct(stockEvent)) return "error.product.unknown";
-        if (!validAdjustmentReason(stockEvent))
+        if (!validAdjustmentReason(stockEvent)) {
+            LOG.error(String.format("error.stockadjustmentreason.unknown: type: %s, name: %s", stockEvent.getType(), stockEvent.getReasonName()));
             return "error.stockadjustmentreason.unknown";
+        }
         return null;
     }
 

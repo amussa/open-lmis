@@ -345,7 +345,7 @@ public class StockCardController extends BaseController
                 reason = stockAdjustmentReasonRepository.getAdjustmentReasonByName(
                         event.getReasonName());
                 if(null == reason)
-                    return OpenLmisResponse.error(messageService.message("error.stockadjustmentreason.unknown"),
+                    return OpenLmisResponse.error(messageService.message(String.format("error.stockadjustmentreason.unknown: type: %s, name: %s", event.getType(), event.getReasonName())),
                             HttpStatus.BAD_REQUEST);
             }
 

@@ -18,4 +18,6 @@ public class FacilityEquipment {
 	private String name;
 	private String serial;
 	private Long facilityId;
+	private Long programId;
+	private String code;
 }
