@@ -1,6 +1,7 @@
 package org.openlmis.restapi.controller;
 
 import lombok.NoArgsConstructor;
+import org.openlmis.core.exception.DataException;
 import org.openlmis.restapi.domain.FacilitySupportedProgram;
 import org.openlmis.restapi.domain.LoginInformation;
 import org.openlmis.restapi.domain.RestLoginRequest;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -36,6 +36,8 @@ public class RestLoginController extends BaseController {
             return new ResponseEntity<>(restResponse, HttpStatus.OK);
         } catch (BadCredentialsException e) {
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        } catch (DataException e) {
+            return new ResponseEntity(HttpStatus.CONFLICT);
         }
     }
 }
