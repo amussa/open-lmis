@@ -43,7 +43,7 @@ public class LoginPage extends Page {
   @FindBy(how = ID, using = "loginError")
   private static WebElement loginErrorLabel = null;
 
-  public static String baseUrl = "http://localhost:9091";
+  public static String baseUrl = "http://localhost:8081";
 
   public LoginPage(TestWebDriver driver, String baseUrl) {
     super(driver);

@@ -27,7 +27,7 @@ import static java.lang.String.format;
 public class GetRequisitionDetailsAPI extends JsonUtility {
 
   public static final String FULL_JSON_POD_TXT_FILE_NAME = "ReportJsonPOD.txt";
-  public static final String URL = "http://localhost:9091/rest-api/requisitions/";
+  public static final String URL = "http://localhost:8081/rest-api/requisitions/";
 
   @BeforeMethod(groups = {"webservice", "webserviceSmoke"})
   public void setUp() throws InterruptedException, SQLException, IOException {
@@ -139,7 +139,7 @@ public class GetRequisitionDetailsAPI extends JsonUtility {
     submitRequisition("commTrack1", "HIV");
     Long id = (long) dbWrapper.getMaxRnrID();
 
-    ResponseEntity responseEntity = client.SendJSON("", "http://localhost:9091/rest-api/requisition/" + id, "GET",
+    ResponseEntity responseEntity = client.SendJSON("", "http://localhost:8081/rest-api/requisition/" + id, "GET",
       "commTrack", "Admin123");
     assertFalse("Response entity : " + responseEntity.getResponse(), responseEntity.getResponse().contains("\"programCode\":\"HIV\""));
     assertTrue("Response entity : " + responseEntity.getResponse(), responseEntity.getResponse().contains("NOT_FOUND"));

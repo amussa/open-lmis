@@ -34,8 +34,8 @@ import static com.thoughtworks.selenium.SeleneseTestBase.*;
 
 public class FacilityFeed extends JsonUtility {
   public static final String FULL_JSON_TXT_FILE_NAME = "AgentValid.txt";
-  public static final String CREATE_URL = "http://localhost:9091/rest-api/agents.json";
-  public static final String UPDATE_URL = "http://localhost:9091/rest-api/agents/";
+  public static final String CREATE_URL = "http://localhost:8081/rest-api/agents.json";
+  public static final String UPDATE_URL = "http://localhost:8081/rest-api/agents/";
   public static final String commTrackUser = "commTrack";
   public static final String PHONE_NUMBER = "0099887766";
   public static final String DEFAULT_AGENT_NAME = "Agent A1";
@@ -45,7 +45,7 @@ public class FacilityFeed extends JsonUtility {
   public static final String JSON_EXTENSION = ".json";
   public static final String POST = "POST";
   public static final String PUT = "PUT";
-  public static final String FACILITY_FEED_URL = "http://localhost:9091/feeds/facilities/recent";
+  public static final String FACILITY_FEED_URL = "http://localhost:8081/feeds/facilities/recent";
 
   LoginPage loginPage;
 

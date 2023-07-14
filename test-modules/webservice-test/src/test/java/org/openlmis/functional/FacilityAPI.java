@@ -26,7 +26,7 @@ import static java.lang.String.format;
 
 
 public class FacilityAPI extends JsonUtility {
-  public static final String URL = "http://localhost:9091/rest-api/facilities/%s";
+  public static final String URL = "http://localhost:8081/rest-api/facilities/%s";
   public static final String commTrackUser = "commTrack";
   public static final String GET = "GET";
 

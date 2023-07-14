@@ -38,8 +38,8 @@ public class CreateUpdateCHW extends JsonUtility {
   public static final String PUT = "PUT";
   public static final String FULL_JSON_TXT_FILE_NAME = "AgentValid.txt";
   public static final String userEmail = "Fatim_Doe@openlmis.com";
-  public static final String CREATE_URL = "http://localhost:9091/rest-api/agents.json";
-  public static final String UPDATE_URL = "http://localhost:9091/rest-api/agents/";
+  public static final String CREATE_URL = "http://localhost:8081/rest-api/agents.json";
+  public static final String UPDATE_URL = "http://localhost:8081/rest-api/agents/";
   public static final String commTrackUser = "commTrack";
   public static final String PHONE_NUMBER = "0099887766";
   public static final String DEFAULT_AGENT_NAME = "Agent A1";
@@ -83,7 +83,7 @@ public class CreateUpdateCHW extends JsonUtility {
 
     HttpClient client = new HttpClient();
     client.createContext();
-    ResponseEntity responseEntity = client.SendJSON("", format("http://localhost:9091/rest-api/facilities/%s", "F10"), "GET", commTrackUser, "Admin123");
+    ResponseEntity responseEntity = client.SendJSON("", format("http://localhost:8081/rest-api/facilities/%s", "F10"), "GET", commTrackUser, "Admin123");
     String response = responseEntity.getResponse();
     assertTrue("Response entity : " + response, response.contains("\"code\":\"F10\""));
     assertTrue("Response entity : " + response, response.contains("\"name\":\"Village Dispensary\""));

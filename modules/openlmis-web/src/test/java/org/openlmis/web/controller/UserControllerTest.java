@@ -88,7 +88,7 @@ public class UserControllerTest {
 
   @Before
   public void setUp() {
-    userController.baseUrl = "http://localhost:9091";
+    userController.baseUrl = "http://localhost:8081";
     userId = 3L;
     initMocks(this);
   }
@@ -135,7 +135,7 @@ public class UserControllerTest {
     user.setUserName("Manan");
     user.setEmail("manan@thoughtworks.com");
     userController.sendPasswordTokenEmail(user);
-    verify(userService).sendForgotPasswordEmail(eq(user), eq("http://localhost:9091/public/pages/reset-password.html#/token/"));
+    verify(userService).sendForgotPasswordEmail(eq(user), eq("http://localhost:8081/public/pages/reset-password.html#/token/"));
   }
 
   @Test
@@ -156,7 +156,7 @@ public class UserControllerTest {
     request.getSession().setAttribute(USER, USER);
     ResponseEntity<OpenLmisResponse> response = userController.create(user, request);
 
-    verify(userService).create(eq(user), eq("http://localhost:9091/public/pages/reset-password.html#/token/"));
+    verify(userService).create(eq(user), eq("http://localhost:8081/public/pages/reset-password.html#/token/"));
 
     assertThat(response.getStatusCode(), is(HttpStatus.OK));
     User returnUser = (User) response.getBody().getData().get("user");
@@ -173,7 +173,7 @@ public class UserControllerTest {
     request.getSession().setAttribute(USER, USER);
     ResponseEntity<OpenLmisResponse> response = userController.create(user, request);
 
-    verify(userService).create(eq(user), eq("http://localhost:9091/public/pages/reset-password.html#/token/"));
+    verify(userService).create(eq(user), eq("http://localhost:8081/public/pages/reset-password.html#/token/"));
 
     User responseUser = (User) response.getBody().getData().get("user");
 

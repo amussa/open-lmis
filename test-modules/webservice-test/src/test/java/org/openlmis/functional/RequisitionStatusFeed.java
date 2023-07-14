@@ -32,7 +32,7 @@ import static java.lang.String.format;
 public class RequisitionStatusFeed extends JsonUtility {
 
   public static final String FULL_JSON_POD_TXT_FILE_NAME = "ReportJsonPOD.txt";
-  public static final String URL = "http://localhost:9091/feeds/requisition-status/";
+  public static final String URL = "http://localhost:8081/feeds/requisition-status/";
 
   @BeforeMethod(groups = {"webservice", "webserviceSmoke"})
   public void setUp() throws InterruptedException, SQLException, IOException {

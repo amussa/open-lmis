@@ -180,7 +180,7 @@ dependencies {
 }
 
 jettyRun {
-    jettyRun.httpPort = 9091;
+    jettyRun.httpPort = 8081;
     contextPath = ''
     daemon = true;
     jettyRun.scanIntervalSeconds = 1
@@ -189,7 +189,7 @@ jettyRun {
 
 def configureHttps(keystore, password) {
     ext.connectors = [jettyRun.class.classLoader.loadClass('org.mortbay.jetty.security.SslSocketConnector').newInstance()]
-    ext.connectors[0].port = 9091
+    ext.connectors[0].port = 8081
     ext.connectors[0].keystore = connectors[0].truststore = keystore
     ext.connectors[0].keyPassword = connectors[0].trustPassword = password
     ext.connectors[0].wantClientAuth = true

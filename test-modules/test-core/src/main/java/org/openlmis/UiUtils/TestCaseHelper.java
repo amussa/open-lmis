@@ -36,7 +36,7 @@ import static java.util.Arrays.asList;
 public class TestCaseHelper {
 
   public static final String DEFAULT_BROWSER = "firefox";
-  public static final String DEFAULT_BASE_URL = "http://localhost:9091/";
+  public static final String DEFAULT_BASE_URL = "http://localhost:8081/";
   public static final String NULL_VALUE = "null";
   public static DBWrapper dbWrapper;
   protected static String baseUrlGlobal;

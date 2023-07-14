@@ -87,7 +87,7 @@ public class TestCalculationsOnRnRThroughAPI extends JsonUtility {
     ResponseEntity responseEntity =
       client.SendJSON(
         getJsonStringFor(reportFromJson),
-        "http://localhost:9091/rest-api/requisitions.json",
+        "http://localhost:8081/rest-api/requisitions.json",
         POST,
         "commTrack",
         "Admin123");
@@ -424,7 +424,7 @@ public class TestCalculationsOnRnRThroughAPI extends JsonUtility {
     ResponseEntity responseEntity =
       client.SendJSON(
         getJsonStringFor(reportFromJson),
-        "http://localhost:9091/rest-api/requisitions.json",
+        "http://localhost:8081/rest-api/requisitions.json",
         POST,
         "commTrack",
         "Admin123");

@@ -33,7 +33,7 @@ import static com.thoughtworks.selenium.SeleneseTestBase.*;
 
 public class ProgramCatalogChangesFeed extends JsonUtility {
 
-  public static final String URL = "http://localhost:9091/feeds/program-catalog-changes/recent";
+  public static final String URL = "http://localhost:8081/feeds/program-catalog-changes/recent";
   public static final String GET = "GET";
   LoginPage loginPage;
 

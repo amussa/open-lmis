@@ -35,7 +35,7 @@ import static com.thoughtworks.selenium.SeleneseTestNgHelper.assertTrue;
 
 public class FacilityProgramSupportedFeed extends JsonUtility {
 
-  public static final String PROGRAM_SUPPORTED_FEED_URL = "http://localhost:9091/feeds/programs-supported/recent";
+  public static final String PROGRAM_SUPPORTED_FEED_URL = "http://localhost:8081/feeds/programs-supported/recent";
   LoginPage loginPage;
 
   @BeforeMethod(groups = {"webservice", "webserviceSmoke"})

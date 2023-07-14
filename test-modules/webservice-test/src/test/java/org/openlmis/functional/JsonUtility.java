@@ -37,7 +37,7 @@ public class JsonUtility extends TestCaseHelper {
   public static final String FULL_JSON_APPROVE_TXT_FILE_NAME = "ReportJsonApprove.txt";
   public static final String STORE_IN_CHARGE = "store in-charge";
   public static final String FULL_JSON_POD_TXT_FILE_NAME = "ReportJsonPOD.txt";
-  public static final String POD_URL = "http://localhost:9091/rest-api/orders/%s/pod.json";
+  public static final String POD_URL = "http://localhost:8081/rest-api/orders/%s/pod.json";
 
   public static <T> T readObjectFromFile(String fullJsonTxtFileName, Class<T> clazz) throws IOException {
     String classPathFile = JsonUtility.class.getClassLoader().getResource(fullJsonTxtFileName).getFile();
@@ -78,7 +78,7 @@ public class JsonUtility extends TestCaseHelper {
     reportFromJson.getProducts().get(0).setRemarks("1");
 
     client.SendJSON(getJsonStringFor(reportFromJson),
-      "http://localhost:9091/rest-api/requisitions/" + id + "/approve",
+      "http://localhost:8081/rest-api/requisitions/" + id + "/approve",
       "PUT",
       "commTrack",
       "Admin123");
@@ -111,7 +111,7 @@ public class JsonUtility extends TestCaseHelper {
     ResponseEntity responseEntity =
       client.SendJSON(
         getJsonStringFor(reportFromJson),
-        "http://localhost:9091/rest-api/requisitions.json",
+        "http://localhost:8081/rest-api/requisitions.json",
         POST,
         "commTrack",
         "Admin123");
@@ -132,7 +132,7 @@ public class JsonUtility extends TestCaseHelper {
     agentJson.setActive("true");
 
     ResponseEntity responseEntity = client.SendJSON(getJsonStringFor(agentJson),
-      "http://localhost:9091/rest-api/agents.json",
+      "http://localhost:8081/rest-api/agents.json",
       POST,
       "commTrack",
       "Admin123");
