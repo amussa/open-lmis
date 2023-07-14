@@ -1,0 +1,6 @@
+INSERT INTO product_categories (id, code, name, displayorder, createdby, createddate, modifiedby, modifieddate) VALUES (15, '15', 'Artigos Comuns', 15, null, current_timestamp, null, current_timestamp);
+INSERT INTO product_categories (id, code, name, displayorder, createdby, createddate, modifiedby, modifieddate) VALUES (16, '16', 'Carga Viral (CV)', 16, null, current_timestamp, null, current_timestamp);
+INSERT INTO product_categories (id, code, name, displayorder, createdby, createddate, modifiedby, modifieddate) VALUES (17, '17', 'Diagnóstico Precoce Infantil (DPI)', 17, null, current_timestamp, null, current_timestamp);
+INSERT INTO product_categories (id, code, name, displayorder, createdby, createddate, modifiedby, modifieddate) VALUES (18, '18', 'Diagnóstico Molecular', 18, null, current_timestamp, null, current_timestamp);
+INSERT INTO product_categories (id, code, name, displayorder, createdby, createddate, modifiedby, modifieddate) VALUES (19, '19', 'Calibradores', 18, null, current_timestamp, null, current_timestamp);
+INSERT INTO product_categories (id, code, name, displayorder, createdby, createddate, modifiedby, modifieddate) VALUES (20, '20', 'Biosecurity Material', 29, null, current_timestamp, null, current_timestamp);

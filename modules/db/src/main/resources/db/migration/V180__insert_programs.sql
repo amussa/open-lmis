@@ -1,0 +1,20 @@
+INSERT INTO programs (id, code, name, description, active, templateconfigured, regimentemplateconfigured, budgetingapplies, usesdar, push, sendfeed, createdby, createddate, modifiedby, modifieddate, isequipmentconfigured, hideskippedproducts, shownonfullsupplytab, enableskipperiod, enableivdform, usepriceschedule, parentid, issupportemergency)
+VALUES (16, 'LMIS_ABBOTT_M2000', 'LMIS ABBOTT M2000', 'LMIS ABBOTT M2000', true, true, true, false, false, false, true, null, current_timestamp, null, current_timestamp, false, false, true, false, false, false, null, false);
+
+INSERT INTO programs (id, code, name, description, active, templateconfigured, regimentemplateconfigured, budgetingapplies, usesdar, push, sendfeed, createdby, createddate, modifiedby, modifieddate, isequipmentconfigured, hideskippedproducts, shownonfullsupplytab, enableskipperiod, enableivdform, usepriceschedule, parentid, issupportemergency)
+VALUES (17, 'LMIS_ABBOTT_ALINITY_M', 'LMIS ABBOTT ALINITY M', 'LMIS ABBOTT ALINITY M', true, true, true, false, false, false, true, null, current_timestamp, null, current_timestamp, false, false, true, false, false, false, null, false);
+
+INSERT INTO programs (id, code, name, description, active, templateconfigured, regimentemplateconfigured, budgetingapplies, usesdar, push, sendfeed, createdby, createddate, modifiedby, modifieddate, isequipmentconfigured, hideskippedproducts, shownonfullsupplytab, enableskipperiod, enableivdform, usepriceschedule, parentid, issupportemergency)
+VALUES (18, 'LMIS_ROCHE_COBAS_6800', 'LMIS ROCHE COBAS 6800', 'LMIS ROCHE COBAS 6800', true, true, true, false, false, false, true, null, current_timestamp, null, current_timestamp, false, false, true, false, false, false, null, false);
+
+INSERT INTO programs (id, code, name, description, active, templateconfigured, regimentemplateconfigured, budgetingapplies, usesdar, push, sendfeed, createdby, createddate, modifiedby, modifieddate, isequipmentconfigured, hideskippedproducts, shownonfullsupplytab, enableskipperiod, enableivdform, usepriceschedule, parentid, issupportemergency)
+VALUES (19, 'LMIS_ROCHE_CAPCTM_96', 'LMIS ROCHE CAPCTM 96', 'LMIS ROCHE CAPCTM 96', true, true, true, false, false, false, true, null, current_timestamp, null, current_timestamp, false, false, true, false, false, false, null, false);
+
+INSERT INTO programs (id, code, name, description, active, templateconfigured, regimentemplateconfigured, budgetingapplies, usesdar, push, sendfeed, createdby, createddate, modifiedby, modifieddate, isequipmentconfigured, hideskippedproducts, shownonfullsupplytab, enableskipperiod, enableivdform, usepriceschedule, parentid, issupportemergency)
+VALUES (20, 'LMIS_HOLOGIC_PANTER', 'LMIS HOLOGIC PANTER', 'LMIS HOLOGIC PANTER', true, true, true, false, false, false, true, null, current_timestamp, null, current_timestamp, false, false, true, false, false, false, null, false);
+
+INSERT INTO programs (id, code, name, description, active, templateconfigured, regimentemplateconfigured, budgetingapplies, usesdar, push, sendfeed, createdby, createddate, modifiedby, modifieddate, isequipmentconfigured, hideskippedproducts, shownonfullsupplytab, enableskipperiod, enableivdform, usepriceschedule, parentid, issupportemergency)
+VALUES (21, 'LMIS_BIOSECURITY_MATERIAL', 'LMIS BIOSECURITY MATERIAL', 'LMIS HOLOGIC PANTER', true, true, true, false, false, false, true, null, current_timestamp, null, current_timestamp, false, false, true, false, false, false, null, false);
+
+INSERT INTO programs (id, code, name, description, active, templateconfigured, regimentemplateconfigured, budgetingapplies, usesdar, push, sendfeed, createdby, createddate, modifiedby, modifieddate, isequipmentconfigured, hideskippedproducts, shownonfullsupplytab, enableskipperiod, enableivdform, usepriceschedule, parentid, issupportemergency)
+VALUES (22, 'LMIS_MPIMA', 'LMIS MPIMA', 'LMIS MPIMA', true, true, true, false, false, false, true, null, current_timestamp, null, current_timestamp, false, false, true, false, false, false, null, false);
