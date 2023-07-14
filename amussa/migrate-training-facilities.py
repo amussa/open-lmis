@@ -8,7 +8,7 @@ import psycopg2
 # Estabelece conexão com a base de dados de treino
 conn_train = psycopg2.connect(
     host="localhost",
-    port="5433",
+    port="5432",
     database="open_lmis",
     user="postgres",
     password=""

@@ -23,7 +23,7 @@ import static java.lang.System.getProperty;
 public class DBWrapper {
 
   public static final int DEFAULT_MAX_MONTH_OF_STOCK = 3;
-  public static final String DEFAULT_DB_URL = "jdbc:postgresql://localhost:5433/open_lmis";
+  public static final String DEFAULT_DB_URL = "jdbc:postgresql://localhost:5432/open_lmis";
   public static final String DEFAULT_DB_USERNAME = "postgres";
   public static final String DEFAULT_DB_PASSWORD = "p@ssw0rd";
 
