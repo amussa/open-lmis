@@ -1,14 +1,14 @@
 import psycopg2
 
 # NOTES:
-# inicializar new_facility_id com o valor de: "select nextval('facilities_id_seq');"
-# no final da migração, actualizar a sequencia com: "ALTER SEQUENCE facilities_id_seq RESTART [proximo_valor];"
-#
+# definir seguinte variáveis:
+# new_facility_id:, ID da próxima facility a ser inserida
+# select_query: facilities que serão copiadas da bd de treino
 
 # Estabelece conexão com a base de dados de treino
 conn_train = psycopg2.connect(
     host="localhost",
-    port="5432",
+    port="5433",
     database="open_lmis",
     user="postgres",
     password=""
@@ -16,11 +16,15 @@ conn_train = psycopg2.connect(
 cursor_train = conn_train.cursor()
 
 # Define o novo ID inicial para as facilities na base de dados de produção
+# Para martelar o ultimo valor da sequência, para que o proximo seja 1499
+# SELECT setval('facilities_id_seq', 1498);
+#
+# Para consultar a próxima sequencia, em produção:
 # SELECT (last_value + 1) as next FROM facilities_id_seq;
-new_facility_id = 1470
+new_facility_id = 1516
 
 # Loop sobre as facilidades na base de dados de treino
-select_query = "SELECT * FROM facilities WHERE id >= 1464 and id <= 1492 order by id"
+select_query = "SELECT * FROM facilities WHERE id >= 1511 and id <= 1523 order by id"
 cursor_train.execute(select_query)
 facilities_data = cursor_train.fetchall()
 for facility in facilities_data:
