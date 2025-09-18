@@ -75,7 +75,7 @@
     <logout logout-success-url="/" invalidate-session="true" delete-cookies="true"/>
 
     <session-management>
-      <concurrency-control expired-url="/user-context.json" max-sessions="10"/>
+      <concurrency-control expired-url="https://siglab.app.co.mz/user-context.json" max-sessions="10"/>
     </session-management>
     <request-cache ref="nullRequestCache"/>
   </http>
@@ -84,7 +84,7 @@
 
   <beans:bean id="authenticationSuccessHandler"
               class="org.openlmis.authentication.web.UserAuthenticationSuccessHandler">
-    <beans:property name="defaultTargetUrl" value="/user-context.json"/>
+    <beans:property name="defaultTargetUrl" value="https://siglab.app.co.mz/user-context.json"/>
   </beans:bean>
 
   <beans:bean id="simpleUrlAuthenticationFailureHandler"

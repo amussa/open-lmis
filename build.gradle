@@ -9,9 +9,9 @@
  */
 
 apply plugin: 'idea'
-apply plugin: 'com.github.ben-manes.versions'
+// apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'properties'
-apply plugin: 'com.palantir.jacoco-full-report'
+// apply plugin: 'com.palantir.jacoco-full-report'
 
 idea.project.languageLevel = '1.7'
 idea.project.jdkName = '1.7'
@@ -26,9 +26,9 @@ buildscript {
     }
     dependencies {
         classpath "net.saliman:gradle-cobertura-plugin:2.2.7"
-        classpath 'com.github.ben-manes:gradle-versions-plugin:0.8'
+        // classpath 'com.github.ben-manes:gradle-versions-plugin:0.8'
         classpath "net.saliman:gradle-properties-plugin:1.4.2"
-        classpath 'com.palantir:jacoco-coverage:0.4.0'
+        // classpath 'com.palantir:jacoco-coverage:0.4.0'
     }
 }
 
